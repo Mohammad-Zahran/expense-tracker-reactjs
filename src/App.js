@@ -17,6 +17,7 @@ function App() {
       <h1>Expense Tracker</h1>
       <BudgetSummary transactions={transactions} />
     </div>
+    
   )
 }
 
