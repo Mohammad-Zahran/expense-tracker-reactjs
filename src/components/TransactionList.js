@@ -6,6 +6,7 @@ const TransactionList = ({transactions, deleteTransaction}) => {
           {transactions.length === 0 ? (
             <div id="status">No transactions.</div>
           ) : (
+            // I used the map function to iterate over each transaction object in the transactions array.
             transactions.map(({ id, name, amount, date, type }) => (
               <li key={id}>
                 <div className="name">
@@ -24,5 +25,7 @@ const TransactionList = ({transactions, deleteTransaction}) => {
         </ul>
       );
     };
+
+    // In general I am mapping through all transactions and having a deleteTransaction to delete the transaction by id
 
 export default TransactionList
