@@ -1,20 +1,17 @@
-import React from 'react'
-
-const BudgetSummary = ({transactions}) => {
-    // I used filter to filter out the type of transaction
-    // reduce will iterate over the filtered array and sums up the amount of each transaction, starting from an initial value of 0.
+const BudgetSummary = ({ transactions }) => {
+    // Calculate the total income
     const incomeTotal = transactions
-         .filter(trx => trx.type === 'income')
-         .reduce((total, trx) => total + trx.amount, 0);
+        .filter(trx => trx.type === 'income')
+        .reduce((total, trx) => total + trx.amount, 0);
 
-         const expenseTotal = transactions
-         .filter(trx => trx.type === 'expense')
-         .reduce((total, trx) => total + trx.amount, 0);
+    // Calculate the total expenses
+    const expenseTotal = transactions
+        .filter(trx => trx.type === 'expense')
+        .reduce((total, trx) => total + trx.amount, 0);
 
+    // Calculate the balance
     const balanceTotal = incomeTotal - expenseTotal;
 
-    // In here I am rendering the component by viewing the entire summary of the expense tracker
-    // from expense to income to balance the user have.
     return (
         <aside className="sidebar">
           <header>
@@ -30,12 +27,14 @@ const BudgetSummary = ({transactions}) => {
               </div>
               <div>
                 <h5>Balance</h5>
-                <span className={balanceTotal < 0 ? 'negative' : ''}>{balanceTotal.toFixed(2)}</span>
+                <span className={balanceTotal < 0 ? 'negative' : ''}>
+                  {balanceTotal.toFixed(2)}
+                </span>
               </div>
             </div>
           </header>
         </aside>
-      );
-    };
+    );
+};
 
-export default BudgetSummary
+export default BudgetSummary;
