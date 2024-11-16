@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Auth.css'; // You can style your register page here
 
 function Register() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,10 +15,10 @@ function Register() {
       return;
     }
 
-    const registerData = { email, password };
+    const registerData = { username, password }; // Use username instead of email
 
     try {
-      const response = await fetch('http://localhost/e-learning/server/register.php', {
+      const response = await fetch('http://localhost/expense-tracker/server/register.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,11 +44,11 @@ function Register() {
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label>Username:</label> {/* Changed label to Username */}
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
             required
           />
         </div>

@@ -6,6 +6,7 @@ import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
 import FilterForm from './components/FilterForm';
 import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 
 function App() {
   const [transactions, setTransactions] = useState(JSON.parse(localStorage.getItem("transactions")) || []);
@@ -34,6 +35,7 @@ function App() {
         <Routes>
 
           <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+          <Route path="/register" element={<Register onLoginSuccess={handleLoginSuccess} />} />
 
           <Route
             path="/"
