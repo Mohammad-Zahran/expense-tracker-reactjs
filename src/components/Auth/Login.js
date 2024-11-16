@@ -26,6 +26,7 @@ function Login({ onLoginSuccess }) {
       const result = await response.json();
 
       if (result.success) {
+        localStorage.setItem('username', username);
         onLoginSuccess(); 
         navigate('/home'); 
       } else {

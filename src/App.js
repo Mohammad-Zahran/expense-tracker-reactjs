@@ -14,6 +14,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   useEffect(() => {
+    const username = localStorage.getItem('username');
+    if (username) {
+      setIsLoggedIn(true);
+    }
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
@@ -26,14 +30,19 @@ function App() {
   };
 
   const handleLoginSuccess = () => {
-    setIsLoggedIn(true); // Set login state to true on successful login
+    setIsLoggedIn(true); 
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    setIsLoggedIn(false);
+    window.location.href = '/login'; 
   };
 
   return (
     <Router>
       <div className="App">
         <Routes>
-
           <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
           <Route path="/register" element={<Register onLoginSuccess={handleLoginSuccess} />} />
 
@@ -42,6 +51,7 @@ function App() {
             element={isLoggedIn ? (
               <>
                 <h1>Expense Tracker</h1>
+                <button onClick={handleLogout}>Logout</button> 
                 <BudgetSummary transactions={transactions} />
                 <div className="content-wrapper">
                   <TransactionForm addTransaction={addTransaction} />
