@@ -26,7 +26,7 @@ function App() {
   };
 
   const handleLoginSuccess = () => {
-    setIsLoggedIn(true); 
+    setIsLoggedIn(true); // Set login state to true on successful login
   };
 
   return (
@@ -38,7 +38,7 @@ function App() {
           <Route path="/register" element={<Register onLoginSuccess={handleLoginSuccess} />} />
 
           <Route
-            path="/"
+            path="/home"
             element={isLoggedIn ? (
               <>
                 <h1>Expense Tracker</h1>
@@ -50,7 +50,7 @@ function App() {
                 <FilterForm transactions={transactions} setFilteredTransactions={setFilteredTransactions} />
               </>
             ) : (
-              <Navigate to="/login" /> // Redirect to login if not logged in
+              <Navigate to="/login" /> 
             )}
           />
         </Routes>

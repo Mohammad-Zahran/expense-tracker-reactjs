@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Auth.css'; // You can style your register page here
+import './Auth.css'; 
 
 function Register() {
   const [username, setUsername] = useState(''); 
@@ -15,7 +15,7 @@ function Register() {
       return;
     }
 
-    const registerData = { username, password }; // Use username instead of email
+    const registerData = { username, password }; 
 
     try {
       const response = await fetch('http://localhost/expense-tracker/server/register.php', {
@@ -29,7 +29,7 @@ function Register() {
       const result = await response.json();
 
       if (result.success) {
-        window.location.href = '/login'; // Redirect to login after successful registration
+        window.location.href = '/login'; 
       } else {
         setError(result.message);
       }
@@ -44,7 +44,7 @@ function Register() {
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label> {/* Changed label to Username */}
+          <label>Username:</label> 
           <input
             type="text"
             value={username} 

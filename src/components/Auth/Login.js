@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import './Auth.css'; // You can style your login page here
+import './Auth.css'; 
+import { useNavigate } from 'react-router-dom'; 
 
-function Login() {
-  const [email, setEmail] = useState('');
+function Login({ onLoginSuccess }) {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const loginData = { email, password };
+    const loginData = { username, password }; 
 
     try {
-      const response = await fetch('http://localhost/e-learning/server/login.php', {
+      const response = await fetch('http://localhost/expense-tracker/server/login.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,8 +26,8 @@ function Login() {
       const result = await response.json();
 
       if (result.success) {
-        // Redirect to dashboard or homepage
-        window.location.href = '/home'; // Update with your redirection logic
+        onLoginSuccess(); 
+        navigate('/home'); 
       } else {
         setError(result.message);
       }
@@ -39,11 +42,11 @@ function Login() {
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label>Username:</label> 
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
