@@ -47,7 +47,7 @@ h3, header, ul {
 /* Main sections for Add Transaction and Transactions */
 .add-transaction {
   flex: 1;
-  max-width: 45%; /* Width for Add Transaction section */
+  max-width: 50%; /* Width for Add Transaction section */
 }
 
 .transactions {
